@@ -3,8 +3,8 @@
 
 using namespace std;
 #include <string>
-#include "assignment.hpp"
 #include <vector>
+#include <set>
 
 vector <assignment> assignments;
 
@@ -16,13 +16,27 @@ enum status{
 
 };
 
+enum Log{
+  
+   NOONE,
+   STUDENT,
+   REVIEWER,
+
+};
+
 class img_member{
   
      public:
 
-     virtual bool check_member(string id , string password);
-     virtual void set_member( string id , string password , int flag);
-     virtual void display(img_member &member);
+   //   img_member();
+   //   ~img_member();
+   //   img_member( const img_member &member);
+
+
+     int check_member(string id , string password);
+     void display(img_member &member);
+     string getid();
+     void set_profile( string id , string password , int flag);
      
      private:
      
@@ -33,7 +47,6 @@ class img_member{
 
 };
 
-void addmember();
 
 
 

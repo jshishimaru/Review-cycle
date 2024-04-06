@@ -4,13 +4,16 @@
 #include <string>
 using namespace std;
 
-struct date{
-  
+class date{
+
+    public :
+
     int date;
     int month;
     int year;
 
     void setdate( int date , int month , int year );
+    void setdate( string date);
     void setdate( int date , int month );
     void getdate();
 
@@ -27,17 +30,22 @@ class task{
 
 };
 
+
+
 class assignment{
 
-    void set_assignment( string name , string description , date deadline);
-    void get_assignment();
+    public:
+
+
+    int set_assignment( string name , string description , date deadline1 , date deadline2);
+    string getname();
     
     private:
     string name;
     string description;
     int number;
-    date deadline;
-
+    date iteration_deadline;
+    date final_deadline;
 
 
 };

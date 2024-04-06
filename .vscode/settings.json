@@ -1,3 +1,7 @@
 {
-    "cmake.sourceDirectory": "/home/jshishimaru/development/img_lec/Review_Cycle/App"
+    "cmake.sourceDirectory": "/home/jshishimaru/development/img_lec/Review_Cycle/App",
+    "files.associations": {
+        "*.tcc": "cpp",
+        "iostream": "cpp"
+    }
 }

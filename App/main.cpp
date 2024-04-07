@@ -15,7 +15,9 @@ reviewer cur_reviewer;
 
 
 void project(){
-
+    
+    set_member( "1" , "1" , 0 , students , reviewers  );
+    set_member( "2" , "2" , 1 , students , reviewers  );
    //WELCOME 
   
    cout << "\t\tWELCOME TO REVIEW-CYCLE!" << endl;
@@ -116,13 +118,77 @@ void project(){
       
      cout << "WELCOME! " << cur_reviewer.getid() << endl;
      
-     cout << "press 1 to view current assignments"<<endl;
-     cout << "press 2 to add a new assignment" << endl;
+
+     int in = 0;
+     while( in!=5){
+
+           cout << "press 1 to view current assignments"<<endl;
+           cout << "press 2 to add a new assignment" << endl;
+           cout << "press 5 to exit" << endl;
+             
+           cin>>in;
+           switch(in){
+   
+              case 1:
+              cur_reviewer.view_assignments();
+              cout << "press 1 to select assignment" << endl;
+
+              // int in2;
+              // cin>>in2;
+
+              // switch( in2 ){
+                  
+              //     case 1:
+    
+
+              // }
+
+              break;
+
+              case 2:
+              cur_reviewer.add_assignment( students);
+              break;
+
+              case 5:
+              logged_in_as = NOONE;
+              break;
+
+           }
+            
+     }
      
 
 
    }
+    
+    else if ( logged_in_as == STUDENT){
 
+           cout<< "press 1 to see your assignments" << endl;
+           cout<< "press 5 to exit" << endl;
+
+           int in;
+           
+
+           while( in!=5){
+
+              cin>>in;
+
+              switch(in){
+  
+                case 1:
+                cur_student.see_all_status();
+                break;
+
+
+              }
+
+
+
+
+           }
+
+
+    }
    
 
 
@@ -131,7 +197,7 @@ void project(){
 
 
    cout << endl << endl << endl;
-   project();
+   if(logged_in_as == NOONE)project();
 
 
 }

@@ -48,7 +48,7 @@ class img_member{
 };
 
 
-
+assignment get_assignment( int number );
 
 
 #endif

@@ -36,20 +36,24 @@ class assignment{
 
     public:
 
+    assignment();
 
     int set_assignment( string name , string description , date deadline1 , date deadline2);
     string getname();
-    
+    const int getnumber() const;
+
     private:
     string name;
     string description;
     int number;
+    static int total_assignments;
     date iteration_deadline;
     date final_deadline;
 
 
 };
 
+int assignment::total_assignments=0;
 
 
 #endif

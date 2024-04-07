@@ -7,6 +7,13 @@
 #include <vector>
 using namespace std;
 
+class assignment_cmp{
+  
+   public:
+   bool operator()(const assignment &a , const assignment &b)const;
+
+};
+
 class student : public img_member{
        
       public:
@@ -15,17 +22,17 @@ class student : public img_member{
       // ~student();
       // student( const student &student);
 
-      void get_status( assignment assignment);
+      status get_status( assignment assignment);
       void set_status( assignment assignment , status status);
-      void get_all_status();
+      void see_all_status();
       void get_tasks( assignment assignment);
       void get_all_tasks();
       void set_task ( assignment assignment , task task);
 
 
        private:
-       map <assignment , status > statuses;
-       map <assignment , vector <task> > tasks;
+       map <assignment , status , assignment_cmp> statuses;
+       map <assignment , vector <task> , assignment_cmp> tasks;
 
 
 };

@@ -13,11 +13,12 @@ class reviewer : public img_member{
     // ~reviewer();
     // reviewer(const reviewer &reviewer);
 
-    void view_status( assignment assignment);
-    void change_status( assignment assignment , student &student , int flag);
+    void view_status( assignment assignment , vector <student> students);
+    void change_status(assignment assignment , vector <student> students);
     void add_task( assignment assignment , student &student , string task);
     void change_task ( student &student , int tasknumber , int flag);
-    int add_assignment();
+    int add_assignment( vector <student> &students);
+    void view_assignments();
     
 
 };

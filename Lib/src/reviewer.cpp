@@ -85,7 +85,7 @@ int reviewer_login( string id , string password , reviewer &cur_reviewer , vecto
 
 }
 
-int reviewer::add_assignment(){
+int reviewer::add_assignment( vector <student> &students){
   
      string temp;
      cout << "Enter Assignment Name : ";
@@ -123,8 +123,92 @@ int reviewer::add_assignment(){
      temp_ass.set_assignment( temp , temp2 , deadline1 , deadline2);
 
      assignments.push_back(temp_ass);
-     cout << "Assignment Added!" << endl;      
+     cout << "Assignment Added!" << endl;   
+
+     for( auto &val : students){
+          
+             val.set_status(temp_ass , PENDING);
+             cout << "set for " << val.getid() << endl;
+
+     }   
      
      return 0;
+
+}
+
+void reviewer::view_assignments(){
+   
+   for( auto val : assignments){
+     
+        cout << val.getnumber() << ". " << val.getname() << endl;
+     
+   
+   }
+  
+}
+
+void reviewer::view_status( assignment assignment , vector <student> students){
+   
+    for( auto val : students){
+  
+          cout << val.getid() << " - " ;
+          
+          switch( val.get_status(assignment)){
+           
+           case PENDING:
+           cout << "Pending" << endl;
+           break;
+           case IN_ITERATION:
+           cout << "In Iteration" << endl;
+           break;
+           case  COMPLETED:
+           cout << "Completed" << endl;
+           break;
+
+
+         }
+
+    }
+
+
+}
+
+void reviewer::change_status( assignment assignment , vector <student> students){
+
+     cout << "Enter Student name : ";
+     string temp;
+     cin>>temp;
+
+     cout << "press 1 to set to PENDING"<<endl;
+     cout << "press 2 to set to IN ITERATION"<<endl;
+     cout << "press 3 to set to COMPLETE"<<endl;
+        
+     int in;
+     cin>>in;
+
+     for( auto &val : students){
+          
+          if( temp == val.getid() ){
+            
+             switch(in){
+               case 1:
+               val.set_status( assignment , PENDING);
+               return;
+               break;
+               case 2:
+               val.set_status(assignment ,  IN_ITERATION);
+               return;
+               break;
+               case 3:
+               val.set_status(assignment , COMPLETED);
+               return;
+               break;
+             }
+
+          }
+
+     }
+
+     cout << "No Student Found!" << endl;
 
 }

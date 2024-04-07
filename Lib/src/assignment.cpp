@@ -3,9 +3,14 @@
 
 using namespace std;
 
+assignment::assignment(){
+     this->number = total_assignments + 1;
+     this->total_assignments++;
+}
 string assignment::getname(){
      return this->name;
 }
+
 
 int assignment::set_assignment( string name , string description , date deadline1, date deadline2){
     
@@ -13,6 +18,8 @@ int assignment::set_assignment( string name , string description , date deadline
      this->description = description;
      this->iteration_deadline = deadline1;
      this->final_deadline = deadline2;
+
+     return 0;
 
 }
 
@@ -33,4 +40,8 @@ void date::setdate(string date){
      temp = date.substr( 6,10 );
      this->year = stoi(temp);
 
+}
+
+const int assignment::getnumber()const{
+     return number;
 }

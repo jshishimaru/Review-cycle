@@ -1,4 +1,5 @@
-#include "/home/jshishimaru/development/img_lec/Review_Cycle/Lib/include/assignment.hpp"
+// #include "/home/jshishimaru/development/img_lec/Review_Cycle/Lib/include/assignment.hpp"
+#include "../include/assignment.hpp"
 #include <iostream>
 
 using namespace std;
@@ -44,4 +45,15 @@ void date::setdate(string date){
 
 const int assignment::getnumber()const{
      return number;
+}
+
+string assignment::getdescription(){
+
+    return this->description;
+
+}
+
+task::task( string name){
+      this-> name = name;
+      completed = false;
 }

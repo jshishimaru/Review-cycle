@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "/home/jshishimaru/development/img_lec/Review_Cycle/Lib/src/student.cpp"
 #include "/home/jshishimaru/development/img_lec/Review_Cycle/Lib/src/img_member.cpp"
 #include "/home/jshishimaru/development/img_lec/Review_Cycle/Lib/src/reviewer.cpp"
@@ -124,7 +125,7 @@ void project(){
 
            cout << "press 1 to view current assignments"<<endl;
            cout << "press 2 to add a new assignment" << endl;
-           cout << "press 5 to exit" << endl;
+           cout << "press 5 to go back" << endl;
              
            cin>>in;
            switch(in){
@@ -133,16 +134,105 @@ void project(){
               cur_reviewer.view_assignments();
               cout << "press 1 to select assignment" << endl;
 
-              // int in2;
-              // cin>>in2;
-
-              // switch( in2 ){
+              int in3;
+              cin>>in3;
+              
+              
+              switch( in3 ){
                   
-              //     case 1:
-    
+                  case 1:
+                  cout << "Enter Assignment No. : ";
+                  int num;
+                  cin>>num;
+                  assignment cur_ass = get_assignment(num);
+                  cout << cur_ass.getnumber() << " " << cur_ass.getname() << " : " << endl;
+                  cout << "Desciption : " <<  cur_ass.getdescription();
 
-              // }
+                  cout << "press 1 to view student status" << endl;
 
+                  int in2;
+                  cin>>in2;
+                  if( in2 == 1){
+                        
+                        cout << endl << "List of students : " << endl;
+
+                        cur_reviewer.view_status( cur_ass , students);
+
+                        cout << "press 1 to select student" << endl;
+                        int in4;
+                        cin>>in4;
+
+                        if( in4 == 1 ){
+
+                            cout << "Enter student ID. : " << endl;
+                            string stu;
+                            cin>>stu;
+                            
+                            student *temp = NULL;
+                            temp = get_student( stu , students );
+                            if( temp == NULL){
+                                 
+                                  cout << "No ID found!" << endl;
+
+                            }
+                            else{
+                                
+                                cout << "Assignment selected : " << cur_ass.getname() << endl;
+                                cout << "Student Selected : "<< temp->getid() << endl << endl;
+                                cout << "press 1 to view tasks" << endl;
+                                cout << "press 2 to change task status" << endl;
+                                cout << "press 3 to add new tasks" << endl;
+                                cout << "press 4 to change assignment status" << endl;
+
+                                int in5;
+                                string task_name;
+                                cin>>in5;
+
+                                switch(in5){
+ 
+                                      case 1:
+                                      temp->get_tasks( cur_ass );
+                                      break;
+                                      case 2:
+                                      cout << "Enter Task No. : ";
+                                      int tasknum;
+                                      cin>>tasknum;
+                                      cout << "Press 1 to set as Pending" << endl;
+                                      cout << "Press 2 to set as Complete" << endl;
+                                      int stat;
+                                      cin>>stat;
+                                      if( temp->change_task_status(cur_ass , stat , tasknum)){
+                                            cout << "Changed Successfully!" << endl;
+                                      }
+                                      else{
+                                          cout << "No task found!" << endl;
+                                      }
+                                      break;
+                                      case 3:
+                                      cout << "Enter Your Task : " << endl;
+                                      cin>>task_name;
+
+                                      temp->add_task( cur_ass , task_name );
+                                      break;
+
+                                      case 4:
+                                      cout << "Press 0 for Pending , 1 for In iteration , 2 for completed" << endl;
+                                      int flag;
+                                      cin>>flag;
+                                      temp->change_assignment_status( cur_ass , flag );
+                                      break;
+
+
+                                }
+
+                            }
+
+                        }
+
+                  }
+                  
+                  break;
+              }
               break;
 
               case 2:
@@ -163,13 +253,13 @@ void project(){
     
     else if ( logged_in_as == STUDENT){
 
-           cout<< "press 1 to see your assignments" << endl;
-           cout<< "press 5 to exit" << endl;
-
            int in;
            
-
            while( in!=5){
+
+           cout<< "press 1 to see your assignments" << endl;
+           cout <<"press 2 to see your tasks" << endl;
+           cout<< "press 5 to exit" << endl;
 
               cin>>in;
 
@@ -179,22 +269,15 @@ void project(){
                 cur_student.see_all_status();
                 break;
 
+                case 2:
+                cur_student.get_all_tasks();
+                break;
 
               }
 
-
-
-
            }
 
-
     }
-   
-
-
-
-
-
 
    cout << endl << endl << endl;
    if(logged_in_as == NOONE)project();

@@ -37,8 +37,12 @@ int img_member::check_member( string id , string password ){
 }
 
 assignment get_assignment( int number ){
+
+     assignment tmp;
  
       for ( auto val : assignments){
+          
+             tmp = val;
   
              if ( number == val.getnumber() ){
 
@@ -46,6 +50,7 @@ assignment get_assignment( int number ){
 
              }
 
-      }     
+      }
+      return tmp;
 
    }

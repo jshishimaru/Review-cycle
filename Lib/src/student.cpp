@@ -91,3 +91,104 @@ void student::set_status( assignment assignment , status status){
        this->statuses[assignment] = status;
 
 }
+
+student* get_student( string id , vector <student> &students){
+
+       for( auto &val : students){
+             
+             if( id == val.getid() ){
+
+                return &val;
+
+             }
+
+       }
+       return NULL;
+
+}
+
+void student::get_tasks( assignment ass){
+ 
+      for( auto &val : tasks){
+
+             assignment tmp = val.first;
+
+             if( ass.getname() == tmp.getname()){
+                             
+                      vector <task> &tasks = val.second;
+                      int index = 1;
+                      for( auto &task : tasks){
+
+                              cout << index << ". "<<task.name << " : ";
+                              if( task.completed){
+
+                                    cout << "Completed" << endl;      
+
+                              }
+                              else cout << "Pending" << endl;
+
+                              index++;
+
+                      }
+             }
+
+      }
+
+}
+
+int student::change_task_status( assignment ass , int stat , int tasknumber){
+
+      for( auto &val : this->tasks){
+
+             assignment temp = val.first;
+
+             if( ass.getname() == temp.getname() ){
+
+                   vector <task> &t = val.second;
+
+                   int index = 1;
+
+                   for( auto &tas : t ){
+
+                        if( index == tasknumber){
+                          
+                            tas.completed = stat - 1;
+                            return 1;
+
+                        }      
+
+                   }
+
+             }
+
+      }
+      return 0;
+}
+
+void student::add_task( assignment ass , string tsk){
+  
+           vector <task> &t = this->tasks[ass];
+           t.push_back( (tsk) );
+
+}
+
+void student::change_assignment_status( assignment ass , int flag){
+  
+             this->statuses[ass] == flag;
+
+}
+
+void student::get_all_tasks(){
+
+     for( auto &val : this->tasks){
+
+           assignment tmp = val.first;
+           for( auto task : val.second){
+
+                  cout << tmp.getnumber() << ". " << tmp.getname() << " - "<<task.name<<endl;
+
+           }
+
+     }
+
+}

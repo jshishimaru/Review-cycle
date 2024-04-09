@@ -27,7 +27,9 @@ class student : public img_member{
       void see_all_status();
       void get_tasks( assignment assignment);
       void get_all_tasks();
-      void set_task ( assignment assignment , task task);
+      void add_task ( assignment assignment , string task);
+      int change_task_status( assignment assignment , int stat , int tasknumber);
+      void change_assignment_status( assignment assignment , int flag);
 
 
        private:
@@ -36,7 +38,7 @@ class student : public img_member{
 
 
 };
-
+student* get_student( string id , vector <student> &students);
 int student_login( string id , string password , student &cur_student , vector <student> &students);
 
 

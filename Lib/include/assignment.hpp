@@ -25,6 +25,8 @@ class task{
      string name;
      bool completed;
 
+     task(string name);
+
      void set_task( string name , bool completed);
      void get_task();
 
@@ -40,6 +42,7 @@ class assignment{
 
     int set_assignment( string name , string description , date deadline1 , date deadline2);
     string getname();
+    string getdescription();
     const int getnumber() const;
 
     private:

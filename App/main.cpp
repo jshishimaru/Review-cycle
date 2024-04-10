@@ -13,12 +13,144 @@ vector <reviewer> reviewers;
 student cur_student;
 reviewer cur_reviewer;
 
+void get_input(){
+
+      vector <string> ass;
+   
+      ifstream in;
+      in.open("data/assignments.txt");
+
+      string temp;
+      
+      while( getline(in ,temp) ){
+
+              ass.push_back(temp);
+
+      }
+      int index = 0;
+
+      int number_of_ass = ass.size()/4;
+
+      while( number_of_ass-- ){
 
 
+          assignment temp_ass;
+          temp_ass.set_assignment( ass[index] ,ass[index+1] , ass[index+2] , ass[index+3] );
+          assignments.push_back(temp_ass);
+          index+=4;
+
+      }
+
+      in.close();
+
+      in.open("data/reviewers.txt");
+      ass.clear();
+
+      while( getline( cin , temp)){
+
+            ass.push_back(temp);
+
+      }
+
+      index = 0;
+      number_of_ass = ass.size()/2;
+
+      while( number_of_ass--){
+
+            reviewer temp_rev;
+
+            temp_rev.set_profile(ass[index] , ass[index+1] , 1);
+
+            reviewers.push_back(temp_rev);
+            index+=2;
+
+      }
+
+      in.close();
+
+      in.open( "data/students.txt");
+
+      int number_of_ass = assignments.size();
+      while(getline(in,temp)){
+        
+         string name = temp;
+         string password;
+         getline( in , password);
+
+         student temp_stu;
+         temp_stu.set_profile(name,password,0);
+
+         for( auto &val : assignments){
+
+             string task_number;
+             int number_of_task;
+
+             string assignment_status;
+             getline( in , assignment_status);
+
+             if( assignment_status == "pending"){
+  
+                 temp_stu.change_assignment_status( val , 0);
+
+             }
+             else if ( assignment_status == "in_iteration"){
+                 temp_stu.change_assignment_status( val , 1);
+             }
+             else{
+                  temp_stu.change_assignment_status( val , 2);
+             }
+
+             getline( in  , task_number);
+             number_of_task = stoi(task_number);
+             
+
+             for( int j=0 ; j < number_of_task ; ++j){
+             
+                  string task_name;
+                  string task_status;
+                  getline( in , task_name);
+                  getline( in , task_status);
+
+                  
+
+                  if( task_status == "pending"){
+
+                        task new_task(task_name,0);
+                        temp_stu.add_task( val , new_task);
+                        
+                  }
+                  else{
+                        task new_task(task_name,1);
+                        temp_stu.add_task( val , new_task);
+
+                  }
+             
+             }                  
+         }
+
+         students.push_back(temp_stu);
+
+      }
+  
+}
+
+void save_output(){
+
+
+
+}
+
+void test(){
+
+      for( auto &val: assignments){
+
+          cout << val.getnumber() << " " << val.getname() << " " << val.getdescription() << endl;
+             
+      }
+
+}
 void project(){
     
-    set_member( "1" , "1" , 0 , students , reviewers  );
-    set_member( "2" , "2" , 1 , students , reviewers  );
    //WELCOME 
   
    cout << "\t\tWELCOME TO REVIEW-CYCLE!" << endl;
@@ -287,7 +419,9 @@ void project(){
 
 int main(){
 
-     project();
+     //project();
+     get_input();
+     test();
 
      return 0;
 }

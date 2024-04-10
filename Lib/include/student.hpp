@@ -28,6 +28,7 @@ class student : public img_member{
       void get_tasks( assignment assignment);
       void get_all_tasks();
       void add_task ( assignment assignment , string task);
+      void add_task( assignment assignment , task task);
       int change_task_status( assignment assignment , int stat , int tasknumber);
       void change_assignment_status( assignment assignment , int flag);
 

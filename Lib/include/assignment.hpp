@@ -8,9 +8,12 @@ class date{
 
     public :
 
-    int date;
+    int day;
     int month;
     int year;
+
+    date( string a);
+    date();
 
     void setdate( int date , int month , int year );
     void setdate( string date);
@@ -23,9 +26,10 @@ class task{
  
      public:
      string name;
-     bool completed;
+     bool completed = false;
 
      task(string name);
+     task( string name , bool completed);
 
      void set_task( string name , bool completed);
      void get_task();

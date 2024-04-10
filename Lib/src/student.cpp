@@ -192,3 +192,9 @@ void student::get_all_tasks(){
      }
 
 }
+
+void student::add_task( assignment assignment , task task){
+  
+         this->tasks[assignment].push_back(task);
+
+}

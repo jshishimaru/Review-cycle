@@ -18,7 +18,7 @@ class date{
     void setdate( int date , int month , int year );
     void setdate( string date);
     void setdate( int date , int month );
-    void getdate();
+    string getdate();
 
 };
 
@@ -47,6 +47,8 @@ class assignment{
     int set_assignment( string name , string description , date deadline1 , date deadline2);
     string getname();
     string getdescription();
+    string get_it_deadline();
+    string get_fin_deadline();
     const int getnumber() const;
 
     private:

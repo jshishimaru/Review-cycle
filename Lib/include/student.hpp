@@ -27,10 +27,12 @@ class student : public img_member{
       void see_all_status();
       void get_tasks( assignment assignment);
       void get_all_tasks();
+      int get_task_count( assignment assignment);
       void add_task ( assignment assignment , string task);
       void add_task( assignment assignment , task task);
       int change_task_status( assignment assignment , int stat , int tasknumber);
       void change_assignment_status( assignment assignment , int flag);
+      vector <task> get_task_vector( assignment assignment);
 
 
        private:

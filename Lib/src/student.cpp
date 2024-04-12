@@ -174,8 +174,15 @@ void student::add_task( assignment ass , string tsk){
 
 void student::change_assignment_status( assignment ass , int flag){
   
-             this->statuses[ass] == flag;
-
+            if( flag == 0){
+                   this->statuses[ass] = PENDING;
+            }
+            if( flag == 1){
+                   this->statuses[ass] = IN_ITERATION;
+            }
+            if( flag == 2){
+                   this->statuses[ass] = COMPLETED;
+            }
 }
 
 void student::get_all_tasks(){
@@ -196,5 +203,17 @@ void student::get_all_tasks(){
 void student::add_task( assignment assignment , task task){
   
          this->tasks[assignment].push_back(task);
+
+}
+
+int student::get_task_count( assignment assignment ){
+  
+     return this->tasks[assignment].size();
+
+}
+
+vector <task> student::get_task_vector( assignment assignment){
+ 
+     return this->tasks[assignment];
 
 }

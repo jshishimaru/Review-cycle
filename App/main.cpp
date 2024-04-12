@@ -4,7 +4,6 @@
 #include "/home/jshishimaru/development/img_lec/Review_Cycle/Lib/src/img_member.cpp"
 #include "/home/jshishimaru/development/img_lec/Review_Cycle/Lib/src/reviewer.cpp"
 #include "/home/jshishimaru/development/img_lec/Review_Cycle/Lib/src/assignment.cpp"
-
 using namespace std;
 
 vector <student> students;
@@ -42,11 +41,12 @@ void get_input(){
       }
 
       in.close();
-
+      
+        
       in.open("data/reviewers.txt");
       ass.clear();
 
-      while( getline( cin , temp)){
+      while( getline( in , temp)){
 
             ass.push_back(temp);
 
@@ -70,7 +70,8 @@ void get_input(){
 
       in.open( "data/students.txt");
 
-      int number_of_ass = assignments.size();
+
+      number_of_ass = assignments.size();
       while(getline(in,temp)){
         
          string name = temp;
@@ -90,14 +91,14 @@ void get_input(){
 
              if( assignment_status == "pending"){
   
-                 temp_stu.change_assignment_status( val , 0);
+                  temp_stu.change_assignment_status( val , PENDING);
 
              }
              else if ( assignment_status == "in_iteration"){
-                 temp_stu.change_assignment_status( val , 1);
+                  temp_stu.change_assignment_status( val , IN_ITERATION);
              }
              else{
-                  temp_stu.change_assignment_status( val , 2);
+                  temp_stu.change_assignment_status( val , COMPLETED);
              }
 
              getline( in  , task_number);
@@ -136,8 +137,65 @@ void get_input(){
 
 void save_output(){
 
+      ofstream assignment_file("data/assignments.txt");
+      for ( auto val : assignments){
+
+             assignment_file<<val.getname()<<endl;
+             assignment_file<<val.getdescription()<<endl;
+             assignment_file<<val.get_it_deadline()<<endl;
+             assignment_file<<val.get_fin_deadline()<<endl;
+
+      }
+      assignment_file.close();
+
+      ofstream reviewer_file("data/reviewers.txt");
+      for( auto val : reviewers){
+         
+             reviewer_file<<val.getid()<<endl;
+             reviewer_file<<val.get_password_hash()<<endl;
+
+      }
+      reviewer_file.close();
+
+      ofstream student_file("data/students.txt");
+      for( auto val : students){
+       
+             student_file<<val.getid()<<endl;
+             student_file<<val.get_password_hash()<<endl;
+
+             for( auto ass : assignments){
+
+                 switch( val.get_status(ass) ){
+                     
+                     case(PENDING):
+                     student_file<<"pending"<<endl;
+                     break;
+                     case(IN_ITERATION):
+                     student_file<<"in_iteration"<<endl;
+                     break;
+                     case(COMPLETED):
+                     student_file<<"complete"<<endl;
+                     break;
+
+                 }
+
+                 student_file<<val.get_task_count(ass)<<endl;
+                 vector <task> tasks = val.get_task_vector(ass);
+                 for( auto t : tasks){
+   
+                        student_file<<t.name<<endl;
+                        if( t.completed){
+                               student_file<<"complete"<<endl;
+                        }
+                        else student_file<<"pending"<<endl;
+
+                 }
 
 
+             }
+
+      }
+      
 }
 
 void test(){
@@ -278,7 +336,7 @@ void project(){
                   cin>>num;
                   assignment cur_ass = get_assignment(num);
                   cout << cur_ass.getnumber() << " " << cur_ass.getname() << " : " << endl;
-                  cout << "Desciption : " <<  cur_ass.getdescription();
+                  cout << "Desciption : " <<  cur_ass.getdescription() << endl;
 
                   cout << "press 1 to view student status" << endl;
 
@@ -315,9 +373,13 @@ void project(){
                                 cout << "press 2 to change task status" << endl;
                                 cout << "press 3 to add new tasks" << endl;
                                 cout << "press 4 to change assignment status" << endl;
+                                cout << "press 5 to go back" << endl;
 
                                 int in5;
                                 string task_name;
+
+                                while( in5!=5)
+                                {
                                 cin>>in5;
 
                                 switch(in5){
@@ -351,11 +413,24 @@ void project(){
                                       cout << "Press 0 for Pending , 1 for In iteration , 2 for completed" << endl;
                                       int flag;
                                       cin>>flag;
-                                      temp->change_assignment_status( cur_ass , flag );
+                                      switch(flag){
+                                          case 0:
+                                          temp->change_assignment_status( cur_ass , PENDING );
+                                          break;
+                                          case 1:
+                                          temp->change_assignment_status( cur_ass , IN_ITERATION );
+                                          break;
+                                          case 2:
+                                          temp->change_assignment_status( cur_ass , COMPLETED );
+                                          break;
+                                        
+                                      }
                                       break;
 
 
                                 }
+
+                              }
 
                             }
 
@@ -405,6 +480,10 @@ void project(){
                 cur_student.get_all_tasks();
                 break;
 
+                case 5:
+                logged_in_as = NOONE;
+                break;
+
               }
 
            }
@@ -412,16 +491,16 @@ void project(){
     }
 
    cout << endl << endl << endl;
-   if(logged_in_as == NOONE)project();
+   if(logged_in_as == NOONE && input!=5)project();
 
 
 }
 
 int main(){
 
-     //project();
      get_input();
-     test();
+     project();
+     save_output();
 
      return 0;
 }

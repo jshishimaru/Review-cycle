@@ -76,3 +76,21 @@ task::task(string name , bool completed){
    this->completed = completed;
 
 }
+
+string date::getdate(){
+ 
+    return to_string(day) + "-" + to_string(month) + "-" + to_string(year);
+
+}
+
+string assignment::get_it_deadline(){
+   
+   return iteration_deadline.getdate();
+
+}
+
+string assignment::get_fin_deadline(){
+
+   return final_deadline.getdate();
+
+}

@@ -7,10 +7,12 @@ Review Cycle is a C++ application designed for the 2024 OOPs assignment of the I
 - View pending assignments
 - View assigned tasks for each assignment
 - View completion status for each assignment
+- Submit assignment submission links
 ### Reviewer View:
 - Create new assignments
 - View completion status for all students
 - Update completion status for individual students
+- View submission links and assign tasks for each assignment to individual students
 ## Requirements
 To use the Review Cycle app, you will need:
 

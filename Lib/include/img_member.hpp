@@ -37,6 +37,7 @@ class img_member{
      void display(img_member &member);
      string getid();
      void set_profile( string id , string password , int flag);
+     void set_existing_profile( string id , size_t password_hash , int flag);
      size_t get_password_hash();
      
      private:

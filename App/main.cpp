@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include "/home/jshishimaru/development/img_lec/Review_Cycle/Lib/src/student.cpp"
 #include "/home/jshishimaru/development/img_lec/Review_Cycle/Lib/src/img_member.cpp"
 #include "/home/jshishimaru/development/img_lec/Review_Cycle/Lib/src/reviewer.cpp"
@@ -58,8 +59,12 @@ void get_input(){
       while( number_of_ass--){
 
             reviewer temp_rev;
+            stringstream ss;
+            ss << ass[index+1];
+            size_t temp;
+            ss >> temp;
 
-            temp_rev.set_profile(ass[index] , ass[index+1] , 1);
+            temp_rev.set_existing_profile(ass[index] , temp , 1);
 
             reviewers.push_back(temp_rev);
             index+=2;
@@ -79,7 +84,11 @@ void get_input(){
          getline( in , password);
 
          student temp_stu;
-         temp_stu.set_profile(name,password,0);
+         stringstream ss;
+         ss<<password;
+         size_t temp;
+         ss>>temp;
+         temp_stu.set_existing_profile(name,temp,0);
 
          for( auto &val : assignments){
 
@@ -88,6 +97,10 @@ void get_input(){
 
              string assignment_status;
              getline( in , assignment_status);
+
+             string repo_link;
+             getline(in, repo_link);
+             temp_stu.set_link( val , repo_link);
 
              if( assignment_status == "pending"){
   
@@ -179,6 +192,7 @@ void save_output(){
 
                  }
 
+                 student_file<<val.get_link(ass , 0);
                  student_file<<val.get_task_count(ass)<<endl;
                  vector <task> tasks = val.get_task_vector(ass);
                  for( auto t : tasks){
@@ -198,15 +212,7 @@ void save_output(){
       
 }
 
-void test(){
 
-      for( auto &val: assignments){
-
-          cout << val.getnumber() << " " << val.getname() << " " << val.getdescription() << endl;
-             
-      }
-
-}
 void project(){
     
    //WELCOME 
@@ -228,7 +234,6 @@ void project(){
    string cur_id;
    string cur_password;
     
-
    // login part 
 
    switch(input){
@@ -301,6 +306,17 @@ void project(){
    }
    
    break;
+
+//    case 7:
+//    for( auto val : students){
+        
+//         cout << val.getid() << endl;
+//         cout << val.get_password_hash() << endl;
+
+//    }
+   break;
+
+
    } 
 
    cout << endl << endl;
@@ -367,19 +383,19 @@ void project(){
                             }
                             else{
                                 
+                                int in5;
+                                string task_name;
+
+                                while( in5!=6)
+                                {
                                 cout << "Assignment selected : " << cur_ass.getname() << endl;
                                 cout << "Student Selected : "<< temp->getid() << endl << endl;
                                 cout << "press 1 to view tasks" << endl;
                                 cout << "press 2 to change task status" << endl;
                                 cout << "press 3 to add new tasks" << endl;
                                 cout << "press 4 to change assignment status" << endl;
-                                cout << "press 5 to go back" << endl;
-
-                                int in5;
-                                string task_name;
-
-                                while( in5!=5)
-                                {
+                                cout << "press 5 to get submission_link"<<endl;
+                                cout << "press 6 to go back" << endl;
                                 cin>>in5;
 
                                 switch(in5){
@@ -425,6 +441,11 @@ void project(){
                                           break;
                                         
                                       }
+                                      cout << "set successfully" << endl;
+                                      break;
+                                      
+                                      case 5:
+                                      temp->get_link( cur_ass);
                                       break;
 
 
@@ -466,9 +487,12 @@ void project(){
 
            cout<< "press 1 to see your assignments" << endl;
            cout <<"press 2 to see your tasks" << endl;
+           cout << "press 3 to submit an assignment"<<endl;
            cout<< "press 5 to exit" << endl;
 
               cin>>in;
+              string repo_link;
+              int assignment_no;
 
               switch(in){
   
@@ -479,6 +503,16 @@ void project(){
                 case 2:
                 cur_student.get_all_tasks();
                 break;
+                
+                case 3:
+                cout << "Enter assignment Number: ";
+                
+                cin>>assignment_no;
+                cout << "Enter the Github repo link or google docs link : ";
+                cin>>repo_link;
+                cur_student.set_submission( assignment_no , repo_link , students);
+                cout << "set successfully!" << endl;
+
 
                 case 5:
                 logged_in_as = NOONE;
@@ -487,6 +521,8 @@ void project(){
               }
 
            }
+
+
 
     }
 

@@ -217,3 +217,50 @@ vector <task> student::get_task_vector( assignment assignment){
      return this->tasks[assignment];
 
 }
+
+void student::set_link( assignment ass , string link){
+        this->submissions[ass] = link;
+}
+
+void student::set_submission( int assignment_num , string link ,vector <student> &students){
+ 
+     student temp;
+     for( auto &stu : students ){
+        
+            if( this->getid() == stu.getid() ) {
+              
+              for( auto val : assignments){
+
+                    if( assignment_num==val.getnumber() ){
+   
+                        stu.set_link( val , link);
+
+                    }
+
+                 }
+            }
+
+     }
+
+}
+
+void student::get_link( assignment ass){
+   
+     if( this->submissions[ass] == "" || this->submissions[ass] == "0"){
+         
+         cout << "NO link submitted" << endl;
+
+     }
+     else{
+        
+        cout << this->submissions[ass] << endl;
+
+     }
+
+}
+
+string student::get_link( assignment ass , int flag){
+ 
+       return this->submissions[ass];
+
+}

@@ -28,15 +28,18 @@ string img_member::getid(){
 
 int img_member::check_member( string id , string password ){
        
+       hash <string> password_hash_fn;
         if( (id == this->id) ){
                 
-               hash <string> password_hash_fn;
-               if( this->password_hash == password_hash_fn(password))
-               return 1;
+               if( this->password_hash == password_hash_fn(password)){
+                     return 1;
+               }
+
         }
-        else{
+               cout << "correct hash : "<< this->get_password_hash()<<endl;
+               cout << "your hash : " << password_hash_fn(password); 
                return 0;
-        }
+
 
 }
 
@@ -61,5 +64,13 @@ assignment get_assignment( int number ){
 
 size_t img_member::get_password_hash(){
        return this->password_hash;
+}
+
+void img_member::set_existing_profile( string id , size_t password , int flag){
+ 
+       this->id = id;
+       this->password_hash = password;
+       this->flag = flag;
+
 }
 

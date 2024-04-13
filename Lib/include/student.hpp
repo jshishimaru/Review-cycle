@@ -33,16 +33,22 @@ class student : public img_member{
       int change_task_status( assignment assignment , int stat , int tasknumber);
       void change_assignment_status( assignment assignment , int flag);
       vector <task> get_task_vector( assignment assignment);
+      void set_link ( assignment assignemt , string link);
+      void set_submission( int assignment_num , string link , vector <student> &students);
+      void get_link( assignment ass);
+      string get_link( assignment ass ,int flag);
 
 
        private:
        map <assignment , status , assignment_cmp> statuses;
        map <assignment , vector <task> , assignment_cmp> tasks;
+       map <assignment , string , assignment_cmp> submissions;
 
 
 };
 student* get_student( string id , vector <student> &students);
 int student_login( string id , string password , student &cur_student , vector <student> &students);
+
 
 
 

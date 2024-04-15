@@ -5,6 +5,7 @@
 #include "img_member.hpp"
 #include <map>
 #include <vector>
+#include <iostream>
 using namespace std;
 
 class assignment_cmp{

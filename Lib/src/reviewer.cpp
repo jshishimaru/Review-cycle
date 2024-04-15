@@ -1,5 +1,4 @@
-#include "/home/jshishimaru/development/img_lec/Review_Cycle/Lib/include/reviewer.hpp"
-#include <iostream>
+#include "../include/reviewer.hpp"
 using namespace std;
 
 // reviewer::reviewer(){};

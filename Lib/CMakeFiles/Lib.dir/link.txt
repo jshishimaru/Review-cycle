@@ -1,0 +1,2 @@
+/usr/bin/ar qc libLib.a CMakeFiles/Lib.dir/src/img_member.cpp.o CMakeFiles/Lib.dir/src/reviewer.cpp.o CMakeFiles/Lib.dir/src/student.cpp.o CMakeFiles/Lib.dir/src/assignment.cpp.o
+/usr/bin/ranlib libLib.a

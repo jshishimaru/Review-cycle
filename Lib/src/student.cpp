@@ -1,6 +1,5 @@
-#include "/home/jshishimaru/development/img_lec/Review_Cycle/Lib/include/student.hpp"
+#include "../include/student.hpp"
 
-#include <iostream>
 using namespace std;
 // student::student(){};
 // student::~student(){};

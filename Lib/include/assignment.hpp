@@ -1,6 +1,6 @@
 #ifndef ASSIGNMENT_HPP
 #define ASSIGNMENT_HPP
-
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -36,8 +36,6 @@ class task{
 
 };
 
-
-
 class assignment{
 
     public:
@@ -62,7 +60,7 @@ class assignment{
 
 };
 
-int assignment::total_assignments=0;
+// int assignment::total_assignments=0;
 
 
 #endif

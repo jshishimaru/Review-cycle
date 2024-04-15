@@ -2,11 +2,13 @@
 #define IMG_MEMBER_HPP
 
 using namespace std;
+#include "assignment.hpp"
+#include <iostream>
 #include <string>
 #include <vector>
 #include <set>
 
-vector <assignment> assignments;
+static vector <assignment> assignments;
 
 enum status{
  
@@ -51,6 +53,5 @@ class img_member{
 
 
 assignment get_assignment( int number );
-
 
 #endif

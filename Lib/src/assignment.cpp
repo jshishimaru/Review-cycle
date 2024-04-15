@@ -1,8 +1,9 @@
 // #include "/home/jshishimaru/development/img_lec/Review_Cycle/Lib/include/assignment.hpp"
 #include "../include/assignment.hpp"
-#include <iostream>
 
 using namespace std;
+
+int assignment::total_assignments = 0;
 
 assignment::assignment(){
      this->number = total_assignments + 1;

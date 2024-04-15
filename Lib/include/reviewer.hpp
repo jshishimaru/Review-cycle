@@ -1,6 +1,7 @@
 #ifndef REVIEWER_HPP
 #define REVIEWER_HPP
 
+#include <iostream>
 #include "student.hpp"
 
 
@@ -25,7 +26,7 @@ class reviewer : public img_member{
 
 
 int set_member( string id , string password , int flag , vector <student> &students , vector <reviewer> &reviewers );
-int reviewer_login( string id , string password , reviewer &cur_reviewer , set <reviewer> &reviewers);
+int reviewer_login( string id , string password , reviewer &cur_reviewer , vector <reviewer> &reviewers);
 
 
 #endif

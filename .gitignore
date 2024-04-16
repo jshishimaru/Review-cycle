@@ -1,0 +1,9 @@
+Makefile
+/CMakeCache.txt
+/App
+build/
+.vscode/
+CMakeFiles/
+/Lib/cmake_install.cmake
+/Lib/libLib.a
+

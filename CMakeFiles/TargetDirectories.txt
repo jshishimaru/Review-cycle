@@ -1,6 +1,0 @@
-/home/jshishimaru/development/img_lec/Review_Cycle/CMakeFiles/App.dir
-/home/jshishimaru/development/img_lec/Review_Cycle/CMakeFiles/edit_cache.dir
-/home/jshishimaru/development/img_lec/Review_Cycle/CMakeFiles/rebuild_cache.dir
-/home/jshishimaru/development/img_lec/Review_Cycle/Lib/CMakeFiles/Lib.dir
-/home/jshishimaru/development/img_lec/Review_Cycle/Lib/CMakeFiles/edit_cache.dir
-/home/jshishimaru/development/img_lec/Review_Cycle/Lib/CMakeFiles/rebuild_cache.dir

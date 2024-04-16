@@ -34,9 +34,9 @@ mkdir build
 
 cd build
 
-cmake ..
+cmake ../
 
-make
+cmake --build ../
 
 ## Usage
 - The application will prompt you to select whether you are a student or a reviewer.

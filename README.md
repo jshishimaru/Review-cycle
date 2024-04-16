@@ -32,9 +32,9 @@ cd review-cycle
 
 mkdir build
 
-cd build
+cmake ./
 
-cmake ../
+cd build
 
 cmake --build ../
 
